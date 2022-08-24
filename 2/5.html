@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Homework</title>
+    <meta charset="UTF-8">
+    <title>Homework</title>
 </head>
 <body>
 <!--
@@ -30,9 +30,46 @@ Infinity делать не нужно, однако, в случае если б
 Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
 -->
 <script>
-  "use strict";
+    "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+    /**
+     * Вычесляем, переданную в третий параметр операцию, между двумя первыми аргументами.
+     * @param {number} arg1 Первое число
+     * @param {number} arg2 Второе число
+     * @param {string} operation Одна из возможны операций - строка
+     * @returns {number} Результат
+     */
+
+    function mathOperation(arg1, arg2, operation) {
+        switch (operation) {
+            case "+": return sum(arg1, arg2);
+            case "-": return differ(arg1, arg2);
+            case "*": return multi(arg1, arg2);
+            case "/": return div(arg1, arg2);
+            default: return NaN;
+        }
+    }
+
+    function sum(c, d) {
+        return c + d;
+    }
+
+    function differ(c, d) {
+        if (c > d) {
+            return c - d;
+        } else {
+            return d - c;
+        }
+    }
+
+    function multi(c, d) {
+        return c * d;
+    }
+
+    function div(c, d) {
+        return c / d;
+    }
+
 </script>
 </body>
 </html>
