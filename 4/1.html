@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Homework</title>
+    <meta charset="UTF-8">
+    <title>Homework</title>
 </head>
 <body>
 <!--
@@ -23,10 +23,10 @@
   function ProductES5(name, price) {
     this.name = name;
     this.price = price;
+  }
 
-    this.make25Discount = function () {
-      this.price *= 0.75;
-    }
+  ProductES5.prototype.make25Discount = function () {
+    this.price *= 0.75;
   }
 
   class ProductES6 {
