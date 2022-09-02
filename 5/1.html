@@ -35,14 +35,14 @@
   1. Найти по id, используя getElementById, элемент с id равным "super_link" и
   вывести этот элемент в консоль.
    */
-  console.log(document.querySelector("#super_link"));
+  console.log(document.getElementById('super_link'));
 
   /*
   2. Внутри всех элементов на странице, которые имеют класс "card-link",
   поменяйте текст внутри элемента на "ссылка".
    */
-  for (const node of document.querySelectorAll(".card-link")) {
-    node.innerText = 'Ссылка';
+  for (const node of document.querySelectorAll('.card-link')) {
+    node.textContent = 'Ссылка';
   }
 
   /*
@@ -72,11 +72,9 @@
   7. Создайте тег `p`, запишите внутри него текст "Привет" и добавьте созданный
   тег в начало элемента, который имеет класс "card".
    */
-
   const pTag = document.createElement('p');
   pTag.textContent = 'Привет';
-  document.querySelector('.card').prepend('Привет');
-
+  document.querySelector('.card').prepend(pTag);
 
   /*
   8. Удалите тег h6 на странице.
