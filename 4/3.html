@@ -31,7 +31,43 @@
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  /**
+   * Класс, представляющий целое положительное число в диапазоне от 0 до 999 включительно в виде трех свойств:
+   * 1. units - содержит число, количество единиц в параметре функции.
+   * 2. dozens - содержит число, количество десятков в параметре функции.
+   * 3. hundreds - содержит число, количество сотен в параметре функции.
+   */
+  class DigitsOfNumber {
+    constructor(units, dozens, hundreds) {
+      this.units = units;
+      this.dozens = dozens;
+      this.hundreds = hundreds;
+    }
+  }
+
+  /**
+   * Функция преобразования целового положительно числа в диапазоне от 0 до 999 включительно
+   * в объект {@link DigitsOfNumber}
+   * @param   number                целое положительное число в диапазоне от 0 до 999 включительно
+   * @returns {null|DigitsOfNumber} null - если заданное число не удовлетворяет условиям
+   *                                объект класса {@link DigitsOfNumber} если заданное число удовлетворяет условиям
+   */
+  function getDigitsOfNumber(number) {
+    if (!Number.isInteger(number) || number < 0 || number > 999) {
+      console.error('Аргументом функции должно целое быть положительное число в диапазоне от 0 до 999 включительно');
+      return null;
+    }
+    return new DigitsOfNumber(
+            Math.trunc(number % 1000 / 100),
+            Math.trunc(number % 100 / 10),
+            number % 10
+    )
+  }
+
+  console.log(getDigitsOfNumber(163));
+  console.log(getDigitsOfNumber(74));
+  console.log(getDigitsOfNumber(9537));
+
 </script>
 </body>
 </html>

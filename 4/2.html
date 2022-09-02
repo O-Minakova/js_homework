@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Homework</title>
+    <meta charset="UTF-8">
+    <title>Homework</title>
 </head>
 <body>
 <!--
@@ -50,7 +50,84 @@
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  function PostES5(author, text) {
+    this.author = author;
+    this.text = text;
+    this.modifyDate = new Date().toLocaleString();
+  }
+
+  PostES5.prototype.edit = function (newText) {
+    this.text = newText;
+    this.modifyDate = new Date().toLocaleString();
+  }
+
+  function AttachedPostES5(author, text) {
+    PostES5.call(this, author, text);
+    this.highlighted = false;
+  }
+
+  AttachedPostES5.prototype = Object.create(PostES5.prototype);
+  AttachedPostES5.prototype.constructor = AttachedPostES5;
+
+  AttachedPostES5.prototype.makeTextHighlighted = function () {
+    this.highlighted = true;
+  }
+
+  class PostES6 {
+    constructor(author, text) {
+      this.author = author;
+      this.text = text;
+      this.modifyDate = new Date().toLocaleString();
+    }
+
+    edit(newText) {
+      this.text = newText;
+      this.modifyDate = new Date().toLocaleString();
+    }
+  }
+
+  class AttachedPostES6 extends PostES6 {
+    constructor(author, text) {
+      super(author, text);
+      this.highlighted = false;
+    }
+
+    makeTextHighlighted() {
+      this.highlighted = true;
+    }
+  }
+
+  async function checkES5Post(editInterval) {
+    const postES5 = new PostES5('Автор поста ES5', 'Текст поста ES5');
+    console.log(`Пример поста в стиле es5: ${JSON.stringify(postES5, null, 4)}`);
+    await new Promise(r => setTimeout(r, editInterval));
+    postES5.edit('Отредактированный текст поста ES5');
+    console.log(`Es5 пост после вызова метода edit: ${JSON.stringify(postES5, null, 4)}`);
+  }
+
+  async function checkES6Post(editInterval) {
+    const postES6 = new PostES6('Автор поста ES6', 'Текст поста ES6');
+    console.log(`Пример поста в стиле es6: ${JSON.stringify(postES6, null, 4)}`);
+    await new Promise(r => setTimeout(r, editInterval));
+    postES6.edit('Отредактированный текст поста ES6');
+    console.log(`Es6 пост после вызова метода edit: ${JSON.stringify(postES6, null, 4)}`);
+  }
+
+  checkES5Post(2000);
+  checkES6Post(2000);
+
+  const attachedPostES5 = new AttachedPostES5('Автор закрепляемого поста ES5', 'Текст закрепляемого поста ES5');
+  console.log(`Пример закрепляемого поста в стиле es5: ${JSON.stringify(attachedPostES5, null, 4)}`);
+  attachedPostES5.makeTextHighlighted();
+  console.log(`Закрепляемый Es5 пост после вызова метода makeTextHighlighted: \
+              ${JSON.stringify(attachedPostES5, null, 4)}`);
+
+  const attachedPostES6 = new AttachedPostES6('Автор закрепляемого поста ES6', 'Текст закрепляемого поста ES6');
+  console.log(`Пример закрепляемого поста в стиле es6: ${JSON.stringify(attachedPostES6, null, 4)}`);
+  attachedPostES6.makeTextHighlighted();
+  console.log(`Закрепляемый Es6 пост после вызова метода makeTextHighlighted: \
+              ${JSON.stringify(attachedPostES6, null, 4)}`);
+
 </script>
 </body>
 </html>
