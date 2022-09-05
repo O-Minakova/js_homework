@@ -5,16 +5,17 @@
   <title>Homework</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
   <style>
-    .message {
-      width: 150px;
-      padding: 20px;
-      background: lightgoldenrodyellow;
-      border: 1px solid orange;
-      visibility: hidden;
-    }
-    .error {
-      border: 0.3rem solid red;
-    }
+      .message {
+          width: 150px;
+          padding: 20px;
+          background: lightgoldenrodyellow;
+          border: 1px solid orange;
+          visibility: hidden;
+      }
+
+      .error {
+          border: 0.3rem solid red;
+      }
   </style>
 </head>
 <body>
@@ -65,7 +66,9 @@
   должно моментально отображаться в span. То есть при печати в input'е тег span
   также должен меняться.
   */
-
+  const spanElement = document.querySelector('span');
+  document.querySelector('input#from')
+    .addEventListener('input', e => spanElement.textContent = e.target.value);
 
   /*
   2. При клике на кнопку с классом messageBtn необходимо элементу с классом
@@ -73,7 +76,12 @@
   1) добавить два класса: animate__animated и animate__fadeInLeftBig
   2) поставить данному элементу стиль visibility в значение 'visible'.
    */
-
+  const messageElement = document.querySelector('.message');
+  document.querySelector('.messageBtn')
+    .addEventListener('click', () => {
+      messageElement.classList.add('animate__animated', 'animate__fadeInLeftBig');
+      messageElement.style.visibility = 'visible';
+    });
 
   /*
   3. Необходимо при отправке формы проверить, заполнены ли все поля в этой
@@ -86,6 +94,21 @@
   данному полю).
   Если поле было чем-либо заполнено, подсветку (класс error) необходимо убрать.
    */
+  const formElement = document.querySelector('form');
+  formElement.addEventListener('submit', e =>
+    e.target.querySelectorAll('.form-control')
+      .forEach(fc => {
+        if (fc.value === '') {
+          fc.classList.add('error');
+          e.preventDefault();
+        }
+      })
+  );
+
+  formElement.addEventListener('input', e => {
+    e.target.classList.contains('form-control')
+    && e.target.classList.toggle('error', e.target.value === '');
+  });
 
 
 </script>
