@@ -82,7 +82,6 @@
     if (!event.target.classList.contains('menuButton')) {
       return;
     }
-    console.log(event.target.dataset.type);
     productsEl.innerHTML = products[event.target.dataset.type]
       .map(product => product.getProductMarkup()).join('');
   });
