@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+
 body {
     margin: 0;
     font-family: Lato, sans-serif;
@@ -73,6 +74,52 @@ body {
     top: -19px;
     font-size: 12px;
     line-height: 19px;
+}
+
+.rightHeader {
+    position: relative;
+}
+
+.basket {
+    position: absolute;
+    z-index: 3;
+    right: 0;
+    top: 37px;
+    background: white;
+    padding: 10px;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+@media (min-width: 340px) {
+    .basket {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 552px) {
+    .basket {
+        width: 500px;
+    }
+}
+
+.basketRow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 10px;
+}
+
+.basketHeader {
+    font-weight: bold;
+}
+
+.basketTotal {
+    font-weight: bold;
+    text-align: right;
 }
 
 .newArrivals {
@@ -458,9 +505,8 @@ body {
 .pagination {
     width: 284px;
     height: 44px;
-    margin: 0 auto;
     border: 1px solid #ebebeb;
-    margin-top: 48px;
+    margin: 48px auto 0;
     padding: 13px 16px;
     box-sizing: border-box;
     display: flex;
@@ -481,10 +527,7 @@ body {
 
 .services {
     background: #222224;
-    padding-top: 48px;
-    padding-bottom: 81px;
-    padding-left: 14px;
-    padding-right: 14px;
+    padding: 48px 14px 81px;
 }
 
 @media (min-width: 1200px) {
@@ -507,7 +550,7 @@ body {
     }
 }
 
-.serivceUnit {
+.serviceUnit {
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -520,7 +563,7 @@ body {
 }
 
 .servicesTitle {
-    font-size: 19.96px;
+    font-size: 20px;
     line-height: 24px;
     margin-top: 27px;
     margin-bottom: 15px;
@@ -528,7 +571,7 @@ body {
 
 .servicesText {
     font-weight: 300;
-    font-size: 13.972px;
+    font-size: 14px;
     line-height: 17px;
     max-width: 340px;
 }
@@ -536,10 +579,7 @@ body {
 .subscribe {
     background: url(images/subscribe.jpg) no-repeat;
     background-size: cover;
-    padding-top: 64px;
-    padding-bottom: 109px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 64px 20px 109px;
 }
 
 @media (min-width: 1200px) {
@@ -606,6 +646,10 @@ body {
     height: 47px;
 }
 
+.subscribeForm label {
+    height: inherit;
+}
+
 .subscribeForm input {
     height: inherit;
     background: #e1e1e1;
@@ -623,16 +667,19 @@ body {
     font-family: inherit;
     opacity: 0.67;
 }
+
 .subscribeForm input::-moz-placeholder {
     color: #222224;
     font-family: inherit;
     opacity: 0.67;
 }
+
 .subscribeForm input:-ms-input-placeholder {
     color: #222224;
     font-family: inherit;
     opacity: 0.67;
 }
+
 .subscribeForm input:-moz-placeholder {
     color: #222224;
     font-family: inherit;
