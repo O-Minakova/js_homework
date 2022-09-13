@@ -19,6 +19,10 @@ class Product {
     this.price = price;
     this.count = count;
   }
+  
+  getTotalPrice() {
+    return this.price * this.count;
+  }
 }
 
 document.querySelector('.featuredItems').addEventListener('click', e => {
@@ -48,7 +52,7 @@ function getBasketCounter() {
 }
 
 function getBasketPrice() {
-  return [...basket.values()].reduce((acc, p) => acc + p.price * p.count, 0);
+  return [...basket.values()].reduce((acc, p) => acc + p.getTotalPrice(), 0);
 }
 
 function renderProductInBasket(id) {
@@ -61,7 +65,7 @@ function renderProductInBasket(id) {
   const product = basket.get(id);
   basketRowEl.querySelector('.productCount').textContent = product.count;
   basketRowEl.querySelector('.productTotalRow')
-    .textContent = (product.price * product.count).toFixed(2);
+    .textContent = product.getTotalPrice().toFixed(2);
 }
 
 function renderNewProductInBasket(id) {
@@ -74,7 +78,7 @@ function renderNewProductInBasket(id) {
       </div>
       <div>$${product.price}</div>
       <div>
-        $<span class="productTotalRow">${(product.price * product.count).toFixed(2)}</span>
+        $<span class="productTotalRow">${(product.getTotalPrice()).toFixed(2)}</span>
       </div>
     </div>
     `;
