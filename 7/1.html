@@ -47,7 +47,7 @@
 
   /*
   1. Необходимо сделать так, чтобы при клике на элемент с классом "nav-link",
-  данному элементу ставился класс "active", при этом у всхе других элементов с
+  данному элементу ставился класс "active", при этом у всех других элементов с
   классом nav-link данных элемент отсутствовал, необходимо использовать
   делегирование события.
   Также необходимо чтобы в div с классом text ставился нужный текст, который
@@ -59,6 +59,19 @@
     X6: "Знаю, программирование это нелегко.",
     H99: "Однако, программирование, в итоге, принесет свои плоды.",
   };
+  let activeLink = document.querySelector('.nav-link.active');
+  const divText = document.querySelector('div.text');
+  document.querySelector('.nav-tabs')
+    .addEventListener('click', e => {
+      if (e.target.classList.contains('nav-link')
+        && !e.target.isEqualNode(activeLink)) {
+        activeLink.classList.remove('active');
+        e.target.classList.add('active');
+        activeLink = e.target;
+
+        divText.textContent = panelText[e.target.parentElement.dataset.text];
+      }
+    });
 
 
   /*
@@ -67,6 +80,14 @@
   шрифт у текста, никакого резкого увеличения шрифта не должно быть при
   перетаскивании ползунка.
    */
+  const inputRangeEl = document.querySelector('input');
+  const divInputEl = document.querySelector('#inputDiv');
+  const initialFotSize = parseFloat(getComputedStyle(divInputEl).fontSize);
+  const inputValueToFontSizeDivider = inputRangeEl.value / initialFotSize;
+  inputRangeEl.addEventListener('input', e => {
+    divInputEl.style.fontSize =
+      `${e.target.value / inputValueToFontSizeDivider}px`;
+  });
 
 
 </script>

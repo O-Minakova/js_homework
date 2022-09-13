@@ -21,12 +21,22 @@
    * Функция перемещает цифры получая наибольшее число.
    * @param {number} n - Число, из цифр которого нужно составить наибольшее
    * возможное число с теми же цифрами.
-   * @returns {number} - Набольшее число из набора цифр числа, переданного в
+   * @returns {Number} - Набольшее число из набора цифр числа, переданного в
    * параметр "n"
    */
   function descendingOrder(n) {
-
+    if (n < 0 || !Number.isInteger(n)) {
+      console.error('Функция принимает неотрицательное целое число');
+      return null;
+    }
+    const unitArray = n.toString().split('');
+    unitArray.sort(function (a, b) {  return b - a;  });
+    return Number.parseInt(unitArray.join(''));
   }
+  /*
+  Возможно не самое элегантное решение
+  Но это первое, что пришло в голову
+   */
 
   console.log(descendingOrder(42145)); // 54421
   console.log(descendingOrder(145263)); // 654321
